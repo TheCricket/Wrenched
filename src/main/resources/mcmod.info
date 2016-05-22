@@ -1,0 +1,16 @@
+[
+{
+  "modid": "spectator",
+  "name": "Spectator Mod",
+  "description": "Mod made for slowpoke",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Cricket"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
