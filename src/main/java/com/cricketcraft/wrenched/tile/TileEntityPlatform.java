@@ -16,6 +16,18 @@ public class TileEntityPlatform extends TileEntity {
     //If it is the main platform it is the 16x one
     private boolean isMainPlatform;
     private TeamColor color;
+    
+    private static Block quartzBlock = null;
+    
+    private static Block getQuartzBlock()
+    {
+        if(quartzBlock == null)
+        {
+            quartzBlock = GameRegistry.findBlock("ExtraUtilities", "color_quartzBlock");
+        }
+        
+        return quartzBlock;
+    }
 
     public TileEntityPlatform() {
         super();
@@ -28,7 +40,7 @@ public class TileEntityPlatform extends TileEntity {
      * @param zPos the z of the BlockPlatform
      */
     public void clearPlatform(World world, int xPos, int yPos, int zPos) {
-        Block grayQuartz = GameRegistry.findBlock("ExtraUtilities", "color_quartzBlock");
+        Block grayQuartz = getQuartzBlock();
         if(isMainPlatform) {
             //First we need to clear the platform all the way up to y256
             for(int x = 0; x < 16; x++) {
@@ -42,7 +54,7 @@ public class TileEntityPlatform extends TileEntity {
             //Now that everything is gone lets put it back
             for(int x = 0; x < 16; x++) {
                 for(int z = 0; z < 16; z++) {
-                    world.setBlock(xPos + x, yPos + 1, zPos + z, grayQuartz, color.getMeta(), 2);
+                    world.setBlock(xPos + x, yPos + 1, zPos + z, grayQuartz, color.meta, 2);
                 }
             }
 
@@ -51,7 +63,7 @@ public class TileEntityPlatform extends TileEntity {
             for(int x = 0; x < 2; x++) {
                 for(int z = 0; z < 2; z++) {
                     if(color.hasBeenEliminated())
-                        world.setBlock(xPos + x, yPos + 1, zPos + z, grayQuartz, TeamColor.GRAY.getMeta(), 2);
+                        world.setBlock(xPos + x, yPos + 1, zPos + z, grayQuartz, TeamColor.GRAY.meta, 2);
                 }
             }
         }
@@ -64,15 +76,15 @@ public class TileEntityPlatform extends TileEntity {
      * @param z the z of the BlockPlatform
      */
     public void spawnChest(World world, int x, int y, int z) {
-        if(world.getBlock(x, y + 1, z) == GameRegistry.findBlock("ExtraUtilities", "color_quartzBlock")
-                && world.getBlockMetadata(x, y + 2, z) == TeamColor.GRAY.getMeta())
+        if(world.getBlock(x, y + 1, z) == getQuartzBlock()
+                && world.getBlockMetadata(x, y + 2, z) == TeamColor.GRAY.meta)
         world.setBlock(x + 7, y + 1, z + 7, Blocks.chest);
     }
 
     public void fillChest(World world, int x, int y, int z) {
         //Don't have to check because I just put it there
-        if(!(world.getBlock(x, y + 1, z) == GameRegistry.findBlock("ExtraUtilities", "color_quartzBlock")
-                && world.getBlockMetadata(x, y + 1, z) == TeamColor.GRAY.getMeta())) {
+        if(!(world.getBlock(x, y + 1, z) == getQuartzBlock()
+                && world.getBlockMetadata(x, y + 1, z) == TeamColor.GRAY.meta)) {
             TileEntityChest chest = (TileEntityChest) world.getTileEntity(x + 7, y + 1, z + 7);
 
             ItemStack[] roundLoot = Util.getChestLootForRound(Wrenched.getCurrentGamemode());

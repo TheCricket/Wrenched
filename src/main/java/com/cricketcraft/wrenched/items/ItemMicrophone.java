@@ -17,6 +17,7 @@ public class ItemMicrophone extends Item {
         setUnlocalizedName("microphone");
         setTextureName(Wrenched.MODID + ":microphone");
         setCreativeTab(Wrenched.tabWrenched);
+        setFull3D();
     }
 
     @Override

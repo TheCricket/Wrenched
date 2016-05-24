@@ -6,13 +6,12 @@ import com.cricketcraft.wrenched.tile.TileEntityPlatform;
 import com.cricketcraft.wrenched.util.TeamColor;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockPlatform extends BlockContainer {
+public class BlockPlatform extends Block {
     public static final int PURPLE = 10;
     public static final int RED = 14;
     public static final int BLUE = 3;
@@ -38,7 +37,7 @@ public class BlockPlatform extends BlockContainer {
             }
         }
 
-        return super.onBlockActivated(world, x, y, z, player, meta, hitX, hitY, hitZ);
+        return true;
     }
 
     private void testAndSet(World world, EntityPlayer player, int x, int y, int z, boolean isMainPlatform) {
@@ -69,15 +68,14 @@ public class BlockPlatform extends BlockContainer {
             }
         }
     }
-
+    
     @Override
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        super.breakBlock(world, x, y, z, block, meta);
-        world.removeTileEntity(x, y, z);
+    public boolean hasTileEntity(int meta) {
+        return true;
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta) {
+    public TileEntity createTileEntity(World world, int meta) {
         return new TileEntityPlatform();
     }
 }

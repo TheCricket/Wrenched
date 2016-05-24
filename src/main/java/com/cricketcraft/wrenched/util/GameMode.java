@@ -9,15 +9,12 @@ public enum GameMode {
     MEDIUM(Wrenched.mediumDir, Wrenched.normalMode),
     HARD(Wrenched.hardDir, Wrenched.hardMode);
 
-    private File dir;
+    public final File dir;
     private Mode mode;
 
     GameMode(File dir, Mode mode) {
+        this.dir = dir;
         this.mode = mode;
-    }
-
-    public File getDirectory() {
-        return dir;
     }
 
     public Mode getMode() {

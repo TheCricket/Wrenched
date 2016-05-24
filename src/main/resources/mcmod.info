@@ -1,14 +1,14 @@
 [
 {
-  "modid": "spectator",
-  "name": "Spectator Mod",
+  "modid": "wrenched",
+  "name": "Wrenched Mod",
   "description": "Mod made for slowpoke",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
   "authorList": ["Cricket"],
-  "credits": "",
+  "credits": "LatvianModder for being awesome",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

@@ -1,18 +1,16 @@
 package com.cricketcraft.wrenched;
 
-import com.cricketcraft.wrenched.event.ChestOpenListener;
-import com.cricketcraft.wrenched.event.EventListener;
 import com.cricketcraft.wrenched.init.ModBlocks;
 import com.cricketcraft.wrenched.init.ModItems;
+import com.cricketcraft.wrenched.net.NetHandler;
 import com.cricketcraft.wrenched.util.GameMode;
 import com.cricketcraft.wrenched.util.JSONUtils;
 import com.cricketcraft.wrenched.util.Mode;
 import com.cricketcraft.wrenched.util.TeamColor;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,7 +22,7 @@ import java.util.ArrayList;
 /**
  * TODO: Finish GUI; Lock the chests until the round starts; Speed boosts for players
  */
-@Mod(modid = Wrenched.MODID, name = Wrenched.NAME, version = Wrenched.VERSION)
+@Mod(modid = Wrenched.MODID, name = Wrenched.NAME, version = Wrenched.VERSION, dependencies = "required-after:FTBL")
 public class Wrenched {
     public static final String MODID = "wrenched";
     public static final String NAME = "Wrenched";
@@ -49,6 +47,9 @@ public class Wrenched {
             return ModItems.judgesHat;
         }
     };
+    
+    @SidedProxy(clientSide = "com.cricketcraft.wrenched.WrenchedClient", serverSide = "com.cricketcraft.wrenched.WrenchedCommon")
+    public static WrenchedCommon proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -68,13 +69,9 @@ public class Wrenched {
         easyMode = new Mode(easyMachine, easyRedstone, easyTransport, easyMisc);
         normalMode = new Mode(mediumMachine, mediumRedstone, mediumTransport, mediumMisc);
         hardMode = new Mode(hardMachine, hardRedstone, hardTransport, hardMisc);
-    }
 
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
-        if(event.getSide() == Side.CLIENT)
-            MinecraftForge.EVENT_BUS.register(new EventListener());
-        MinecraftForge.EVENT_BUS.register(new ChestOpenListener());
+        MinecraftForge.EVENT_BUS.register(new WrenchedEventListener());
+        NetHandler.init();
     }
 
     @Mod.EventHandler
@@ -108,29 +105,25 @@ public class Wrenched {
     }
 
     private void registerFiles(FMLPreInitializationEvent event) {
-        wrenchedDir = new File(event.getModConfigurationDirectory() + "/Wrenched");
-        easyDir = registerFile(wrenchedDir, "/Easy Mode");
-        mediumDir = registerFile(wrenchedDir, "/Medium Mode");
-        hardDir = registerFile(wrenchedDir, "/Hard Mode");
+        wrenchedDir = new File(event.getModConfigurationDirectory(), "/Wrenched");
+        easyDir = new File(wrenchedDir, "/Easy Mode");
+        mediumDir = new File(wrenchedDir, "/Medium Mode");
+        hardDir = new File(wrenchedDir, "/Hard Mode");
 
-        easyMachine = registerFile(easyDir, "/machines.json");
-        easyRedstone = registerFile(easyDir, "/redstone.json");
-        easyTransport = registerFile(easyDir, "/transport.json");
-        easyMisc = registerFile(easyDir, "/misc.json");
+        easyMachine = new File(easyDir, "/machines.json");
+        easyRedstone = new File(easyDir, "/redstone.json");
+        easyTransport = new File(easyDir, "/transport.json");
+        easyMisc = new File(easyDir, "/misc.json");
 
-        mediumMachine = registerFile(mediumDir, "/machines.json");
-        mediumRedstone = registerFile(mediumDir, "/redstone.json");
-        mediumTransport = registerFile(mediumDir, "/transport.json");
-        mediumMisc = registerFile(mediumDir, "/misc.json");
+        mediumMachine = new File(mediumDir, "/machines.json");
+        mediumRedstone = new File(mediumDir, "/redstone.json");
+        mediumTransport = new File(mediumDir, "/transport.json");
+        mediumMisc = new File(mediumDir, "/misc.json");
 
-        hardMachine = registerFile(hardDir, "/machines.json");
-        hardRedstone = registerFile(hardDir, "/redstone.json");
-        hardTransport = registerFile(hardDir, "/transport.json");
-        hardMisc = registerFile(hardDir, "/misc.json");
-    }
-
-    private File registerFile(File dir, String name) {
-        return new File(dir.getAbsolutePath() + name);
+        hardMachine = new File(hardDir, "/machines.json");
+        hardRedstone = new File(hardDir, "/redstone.json");
+        hardTransport = new File(hardDir, "/transport.json");
+        hardMisc = new File(hardDir, "/misc.json");
     }
 
     private void loadFiles() {
