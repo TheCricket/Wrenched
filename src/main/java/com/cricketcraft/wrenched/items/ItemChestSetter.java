@@ -90,7 +90,7 @@ public class ItemChestSetter extends Item {
                     e.printStackTrace();
                 }
 
-                FMLLog.info(String.format("[Wrenched] Saved items %s to JSON %s", Util.getStringsFromStacks(inventory), chestSetter.getJson().getName()));
+                FMLLog.info(String.format("[Wrenched] Saved items %s to JSON %s!", Util.getStringsFromStacks(inventory), chestSetter.getJson().getName()));
 
             }
         }
