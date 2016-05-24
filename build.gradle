@@ -28,6 +28,19 @@ minecraft {
     runDir = "run"
 }
 
+repositories {
+    maven {
+        name 'Chicken Bones Repo'
+        url "http://chickenbones.net/maven/"
+    }
+}
+
+dependencies {
+    compile "codechicken:CodeChickenLib:${minecraft_version}-${ccl_version}:dev"
+    compile "codechicken:CodeChickenCore:${minecraft_version}-${ccc_version}:dev"
+    compile "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
+}
+
 processResources
 {
     inputs.property "version", project.version
@@ -41,6 +54,12 @@ processResources
 
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+jar {
+    manifest {
+        attributes 'FMLAT' : 'wrenched_at.cfg'
     }
 }
 

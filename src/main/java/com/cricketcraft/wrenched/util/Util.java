@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Util {
@@ -15,22 +17,39 @@ public class Util {
         Item item = GameRegistry.findItem(args[0], args[1]);
         int size = 1;
         int meta = 0;
-        if(args.length == 3)
+        if (args.length == 3)
             size = Integer.valueOf(args[2]);
-        if(args.length == 4)
+        if (args.length == 4)
             meta = Integer.valueOf(args[3]);
-        if(item instanceof ItemBlock)
+        if (item instanceof ItemBlock)
             return new ItemStack(Block.getBlockFromItem(item), size, meta);
         return new ItemStack(item, size, meta);
     }
 
     public static ItemStack[] getStacksFromStrings(String... args) {
         ItemStack[] ret = new ItemStack[args.length];
-        for(int c = 0; c < args.length; c++) {
+        for (int c = 0; c < args.length; c++) {
             ret[c] = getStackFromString(args[c]);
         }
 
         return ret;
+    }
+
+    public static String getStringFromStack(ItemStack stack) {
+        if(stack == null)
+            return "";
+        String unlocalizedName = stack.getUnlocalizedName();
+        return unlocalizedName + ":" + stack.stackSize + ":" + stack.getItemDamage();
+    }
+
+    public static String[] getStringsFromStacks(ItemStack... stacks) {
+        List<String> ret = new ArrayList<String>();
+        for(int c = 0; c < stacks.length; c++) {
+            if(stacks[c] != null)
+                ret.add(getStringFromStack(stacks[c]));
+        }
+
+        return (String[]) ret.toArray();
     }
 
     public static ItemStack[] getChestLootForRound(GameMode mode) {

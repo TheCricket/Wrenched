@@ -1,5 +1,8 @@
 package com.cricketcraft.wrenched.util;
 
+import com.google.common.base.Strings;
+import net.minecraft.item.ItemStack;
+
 import java.io.File;
 
 public class Mode {
@@ -85,5 +88,22 @@ public class Mode {
 
     public void setMiscItems(String[] miscItems) {
         this.miscItems = miscItems;
+    }
+
+    public void setItemsByType(int type, String... items) {
+        switch (type) {
+            case 0:
+                setMachineItems(items);
+                break;
+            case 1:
+                setTransportItems(items);
+                break;
+            case 2:
+                setRedstoneItems(items);
+                break;
+            case 3:
+                setMiscItems(items);
+                break;
+        }
     }
 }

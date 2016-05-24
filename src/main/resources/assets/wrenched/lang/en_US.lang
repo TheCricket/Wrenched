@@ -1,6 +1,18 @@
 item.judgesHat.name=Judges Hat
 item.microphone.name=Microphone
 item.platformConnector.name=Platform Connector
+item.chestSetter.0.name=Easy Machine Setter
+item.chestSetter.1.name=Easy Transportation Setter
+item.chestSetter.2.name=Easy Redstone Setter
+item.chestSetter.3.name=Easy Misc Setter
+item.chestSetter.4.name=Medium Machine Setter
+item.chestSetter.5.name=Medium Transportation Setter
+item.chestSetter.6.name=Medium Redstone Setter
+item.chestSetter.7.name=Medium Misc Setter
+item.chestSetter.8.name=Hard Machine Setter
+item.chestSetter.9.name=Hard Transportation Setter
+item.chestSetter.10.name=Hard Redstone Setter
+item.chestSetter.11.name=Hard Misc Setter
 
 tile.platformBlock.name=Platform Block
 tile.table.name=Judges Table

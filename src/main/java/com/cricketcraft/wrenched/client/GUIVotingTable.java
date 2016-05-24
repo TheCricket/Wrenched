@@ -17,46 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GUIVotingTable extends GuiLM
-{
+public class GUIVotingTable extends GuiLM {
     public static final ResourceLocation TEXTURE = new ResourceLocation(Wrenched.MODID, "textures/gui/voting_table.png");
-
-    public class ButtonVoteTeam extends ButtonLM
-    {
-        public final TeamColor color;
-
-        public ButtonVoteTeam(TeamColor c, int x, int y)
-        {
-            super(GUIVotingTable.this, x, y, 32, 32);
-            color = c;
-        }
-
-        @Override
-        public void onButtonPressed(int i)
-        {
-            FTBLibClient.playClickSound();
-            selectedTeam = this;
-        }
-
-        @Override
-        public void renderWidget()
-        {
-            if(selectedTeam == this)
-            {
-                float alpha = (float) (0.3D + 0.2D * Math.sin(System.currentTimeMillis() * 0.007D));
-                GlStateManager.color(1F, 1F, 1F, alpha);
-                GuiLM.drawBlankRect(getAX(), getAY(), gui.getZLevel(), width, height);
-                GlStateManager.color(1F, 1F, 1F, 1F);
-            }
-        }
-    }
-
     public List<ButtonVoteTeam> buttons;
     public ButtonLM buttonAccept;
     public ButtonVoteTeam selectedTeam;
-
-    public GUIVotingTable()
-    {
+    public GUIVotingTable() {
         super(null, TEXTURE);
 
         mainPanel.width = 158;
@@ -68,15 +34,12 @@ public class GUIVotingTable extends GuiLM
         buttons.add(new ButtonVoteTeam(TeamColor.PURPLE, 81, 9));
         buttons.add(new ButtonVoteTeam(TeamColor.RED, 117, 9));
 
-        buttonAccept = new ButtonLM(this, 51, 49, 56, 13)
-        {
+        buttonAccept = new ButtonLM(this, 51, 49, 56, 13) {
             @Override
-            public void onButtonPressed(int i)
-            {
+            public void onButtonPressed(int i) {
                 FTBLibClient.playClickSound();
 
-                if(selectedTeam != null)
-                {
+                if (selectedTeam != null) {
                     NetHandler.NET.sendToServer(new MessageButtonClicked(selectedTeam.color.ordinal()));
                     mc.thePlayer.closeScreen();
                 }
@@ -85,10 +48,8 @@ public class GUIVotingTable extends GuiLM
     }
 
     @Override
-    public void addWidgets()
-    {
-        for(ButtonVoteTeam b : buttons)
-        {
+    public void addWidgets() {
+        for (ButtonVoteTeam b : buttons) {
             mainPanel.add(b);
         }
 
@@ -96,15 +57,38 @@ public class GUIVotingTable extends GuiLM
     }
 
     @Override
-    public void drawBackground()
-    {
+    public void drawBackground() {
         super.drawBackground();
 
-        if(selectedTeam != null)
-        {
+        if (selectedTeam != null) {
             selectedTeam.renderWidget();
         }
 
         drawCenteredString(getFontRenderer(), FTBLibLang.button_accept(), buttonAccept.getAX() + buttonAccept.width / 2, buttonAccept.getAY() + 2, selectedTeam == null ? 0xFF888888 : 0xFFFFFFFF);
+    }
+
+    public class ButtonVoteTeam extends ButtonLM {
+        public final TeamColor color;
+
+        public ButtonVoteTeam(TeamColor c, int x, int y) {
+            super(GUIVotingTable.this, x, y, 32, 32);
+            color = c;
+        }
+
+        @Override
+        public void onButtonPressed(int i) {
+            FTBLibClient.playClickSound();
+            selectedTeam = this;
+        }
+
+        @Override
+        public void renderWidget() {
+            if (selectedTeam == this) {
+                float alpha = (float) (0.3D + 0.2D * Math.sin(System.currentTimeMillis() * 0.007D));
+                GlStateManager.color(1F, 1F, 1F, alpha);
+                GuiLM.drawBlankRect(getAX(), getAY(), gui.getZLevel(), width, height);
+                GlStateManager.color(1F, 1F, 1F, 1F);
+            }
+        }
     }
 }

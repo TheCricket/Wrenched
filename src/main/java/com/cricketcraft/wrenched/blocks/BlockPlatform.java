@@ -29,10 +29,10 @@ public class BlockPlatform extends Block {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ) {
-        if(player.getCurrentEquippedItem() != null) {
+        if (player.getCurrentEquippedItem() != null) {
             if (player.getCurrentEquippedItem().getItem() == ModItems.platformConnector && player.getCurrentEquippedItem().getItemDamage() == 0) {
                 testAndSet(world, player, x, y, z, false);
-            } else if(player.getCurrentEquippedItem().getItem() == ModItems.platformConnector && player.getCurrentEquippedItem().getItemDamage() == 1) {
+            } else if (player.getCurrentEquippedItem().getItem() == ModItems.platformConnector && player.getCurrentEquippedItem().getItemDamage() == 1) {
                 testAndSet(world, player, x, y, z, true);
             }
         }
@@ -68,7 +68,7 @@ public class BlockPlatform extends Block {
             }
         }
     }
-    
+
     @Override
     public boolean hasTileEntity(int meta) {
         return true;

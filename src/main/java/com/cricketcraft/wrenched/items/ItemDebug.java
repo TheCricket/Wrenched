@@ -2,7 +2,9 @@ package com.cricketcraft.wrenched.items;
 
 import com.cricketcraft.wrenched.Wrenched;
 import com.cricketcraft.wrenched.util.GameMode;
+import com.cricketcraft.wrenched.util.TeamColor;
 import com.cricketcraft.wrenched.util.Util;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,12 +24,11 @@ public class ItemDebug extends Item {
 
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        Block block = world.getBlock(x, y, z);
-        if(block instanceof BlockChest) {
-            TileEntityChest chest = (TileEntityChest) world.getTileEntity(x, y, z);
-            //TODO: Make this randomized
-            for(int c = 0; c < GameMode.EASY.getMode().getMachineItems().length; c++ ) {
-                chest.setInventorySlotContents(c, Util.getStackFromString(GameMode.EASY.getMode().getMachineItems()[c]));
+        Block block = GameRegistry.findBlock("ExtraUtilities", "color_quartzBlock");
+        for(int x1 = 0; x1 < 16; x1++) {
+            for(int z1 = 0; z1 < 16; z1++) {
+                world.setBlock(x + x1, y + 1, z + z1, block);
+                world.setBlockMetadataWithNotify(x + x1, y + 1, z + z1, world.getBlockMetadata(x, y, z), 2);
             }
         }
         return super.onItemUseFirst(stack, player, world, x, y, z, side, hitX, hitY, hitZ);

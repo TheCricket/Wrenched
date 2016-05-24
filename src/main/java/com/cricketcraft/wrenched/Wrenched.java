@@ -1,8 +1,10 @@
 package com.cricketcraft.wrenched;
 
+import com.cricketcraft.wrenched.event.WrenchedEventListener;
 import com.cricketcraft.wrenched.init.ModBlocks;
 import com.cricketcraft.wrenched.init.ModItems;
 import com.cricketcraft.wrenched.net.NetHandler;
+import com.cricketcraft.wrenched.proxy.CommonProxy;
 import com.cricketcraft.wrenched.util.GameMode;
 import com.cricketcraft.wrenched.util.JSONUtils;
 import com.cricketcraft.wrenched.util.Mode;
@@ -20,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * TODO: Finish GUI; Lock the chests until the round starts; Speed boosts for players
+ * TODO: Lock the chests until the round starts; Speed boosts for players
  */
 @Mod(modid = Wrenched.MODID, name = Wrenched.NAME, version = Wrenched.VERSION, dependencies = "required-after:FTBL")
 public class Wrenched {
@@ -34,22 +36,25 @@ public class Wrenched {
     public static File easyMachine, easyRedstone, easyTransport, easyMisc;
     public static File mediumMachine, mediumRedstone, mediumTransport, mediumMisc;
     public static File hardMachine, hardRedstone, hardTransport, hardMisc;
-
-    private static GameMode currentMode;
-
     public static Mode easyMode, normalMode, hardMode;
-
     public static boolean lockedChests;
-
     public static CreativeTabs tabWrenched = new CreativeTabs("tabWrenched") {
         @Override
         public Item getTabIconItem() {
             return ModItems.judgesHat;
         }
     };
-    
-    @SidedProxy(clientSide = "com.cricketcraft.wrenched.WrenchedClient", serverSide = "com.cricketcraft.wrenched.WrenchedCommon")
-    public static WrenchedCommon proxy;
+    @SidedProxy(clientSide = "com.cricketcraft.wrenched.proxy.ClientProxy", serverSide = "com.cricketcraft.wrenched.proxy.CommonProxy")
+    public static CommonProxy proxy;
+    private static GameMode currentMode;
+
+    public static GameMode getCurrentGamemode() {
+        return currentMode;
+    }
+
+    public static void setCurrentGamemode(GameMode mode) {
+        currentMode = mode;
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -96,14 +101,6 @@ public class Wrenched {
         }
     }
 
-    public static GameMode getCurrentGamemode() {
-        return currentMode;
-    }
-
-    public static void setCurrentGamemode(GameMode mode) {
-        currentMode = mode;
-    }
-
     private void registerFiles(FMLPreInitializationEvent event) {
         wrenchedDir = new File(event.getModConfigurationDirectory(), "/Wrenched");
         easyDir = new File(wrenchedDir, "/Easy Mode");
@@ -127,13 +124,13 @@ public class Wrenched {
     }
 
     private void loadFiles() {
-        if(!wrenchedDir.exists())
+        if (!wrenchedDir.exists())
             wrenchedDir.mkdirs();
-        if(!easyDir.exists())
+        if (!easyDir.exists())
             easyDir.mkdir();
-        if(!mediumDir.exists())
+        if (!mediumDir.exists())
             mediumDir.mkdir();
-        if(!hardDir.exists())
+        if (!hardDir.exists())
             hardDir.mkdir();
 
         loadFile(easyMachine);
@@ -153,7 +150,7 @@ public class Wrenched {
     }
 
     private void loadFile(File file) {
-        if(!file.exists()) {
+        if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {

@@ -17,21 +17,21 @@ public enum GameMode {
         this.mode = mode;
     }
 
+    public static GameMode getGameModeFromFile(File file) {
+        if (file.equals(Wrenched.easyDir))
+            return GameMode.EASY;
+        else if (file.equals(Wrenched.mediumDir))
+            return GameMode.MEDIUM;
+        else if (file.equals(Wrenched.hardDir))
+            return GameMode.HARD;
+        return null;
+    }
+
     public Mode getMode() {
         return mode;
     }
 
     public void setMode(Mode mode) {
         this.mode = mode;
-    }
-
-    public static GameMode getGameModeFromFile(File file) {
-        if(file.equals(Wrenched.easyDir))
-            return GameMode.EASY;
-        else if(file.equals(Wrenched.mediumDir))
-            return GameMode.MEDIUM;
-        else if(file.equals(Wrenched.hardDir))
-            return GameMode.HARD;
-        return null;
     }
 }

@@ -22,7 +22,7 @@ public class ItemMicrophone extends Item {
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int meta, float hitX, float hitY, float hitZ) {
-        if(player.isSneaking()) {
+        if (player.isSneaking()) {
             List<TileEntityPlatform> allPlatforms = new ArrayList<TileEntityPlatform>();
 
             for (int c = 0; c < world.loadedTileEntityList.size(); c++) {
