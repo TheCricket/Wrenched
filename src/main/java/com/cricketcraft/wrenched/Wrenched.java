@@ -75,6 +75,8 @@ public class Wrenched {
         normalMode = new Mode(mediumMachine, mediumRedstone, mediumTransport, mediumMisc);
         hardMode = new Mode(hardMachine, hardRedstone, hardTransport, hardMisc);
 
+        currentMode = GameMode.EASY;
+
         MinecraftForge.EVENT_BUS.register(new WrenchedEventListener());
         NetHandler.init();
     }

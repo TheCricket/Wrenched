@@ -1,5 +1,6 @@
 package com.cricketcraft.wrenched.util;
 
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -43,13 +45,13 @@ public class Util {
     }
 
     public static String[] getStringsFromStacks(ItemStack... stacks) {
-        List<String> ret = new ArrayList<String>();
+        List<String> ret = new ArrayList<>();
         for(int c = 0; c < stacks.length; c++) {
             if(stacks[c] != null)
                 ret.add(getStringFromStack(stacks[c]));
         }
-
-        return (String[]) ret.toArray();
+        String[] trueRet = Arrays.copyOf(ret.toArray(), ret.toArray().length, String[].class);
+        return trueRet;
     }
 
     public static ItemStack[] getChestLootForRound(GameMode mode) {

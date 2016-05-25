@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.cricketcraft.wrenched.util.GameMode.EASY;
@@ -70,28 +71,29 @@ public class ItemChestSetter extends Item {
 
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        EnumChestSetter chestSetter = EnumChestSetter.values()[stack.getItemDamage()];
-        if(world.getTileEntity(x, y, z) != null) {
-            if(world.getTileEntity(x, y, z) instanceof TileEntityChest) {
-                TileEntityChest chest = (TileEntityChest) world.getTileEntity(x, y, z);
-                ItemStack[] inventory = new ItemStack[chest.getSizeInventory()];
-                for(int c = 0; c < chest.getSizeInventory(); c++) {
-                    if(chest.getStackInSlot(c) != null) {
-                        ItemStack stack1 = chest.getStackInSlot(c);
-                        inventory[c] = chest.getStackInSlot(c);
+        if (!world.isRemote) {
+            EnumChestSetter chestSetter = EnumChestSetter.values()[stack.getItemDamage()];
+            if(world.getTileEntity(x, y, z) != null) {
+                if(world.getTileEntity(x, y, z) instanceof TileEntityChest) {
+                    TileEntityChest chest = (TileEntityChest) world.getTileEntity(x, y, z);
+                    ItemStack[] inventory = new ItemStack[chest.getSizeInventory()];
+                    for(int c = 0; c < chest.getSizeInventory(); c++) {
+                        if(chest.getStackInSlot(c) != null) {
+                            ItemStack stack1 = chest.getStackInSlot(c);
+                            inventory[c] = chest.getStackInSlot(c);
+                        }
                     }
+
+                    chestSetter.getMode().getMode().setItemsByType(chestSetter.getType(), Util.getStringsFromStacks(inventory));
+
+                    try {
+                        JSONUtils.JavaToJson.convert(Wrenched.getCurrentGamemode(), chestSetter.getJson(), chestSetter.getType());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    FMLLog.info(String.format("[Wrenched] Saved items %s to JSON %s!", Arrays.toString(Util.getStringsFromStacks(inventory)), chestSetter.getJson().getAbsolutePath()));
                 }
-
-                chestSetter.getMode().getMode().setItemsByType(chestSetter.getType(), Util.getStringsFromStacks(inventory));
-
-                try {
-                    JSONUtils.JavaToJson.convert(Wrenched.getCurrentGamemode(), chestSetter.getJson(), chestSetter.getType());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                FMLLog.info(String.format("[Wrenched] Saved items %s to JSON %s!", Util.getStringsFromStacks(inventory), chestSetter.getJson().getName()));
-
             }
         }
 

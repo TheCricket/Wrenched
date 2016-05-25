@@ -1,8 +1,5 @@
 package com.cricketcraft.wrenched.util;
 
-import com.google.common.base.Strings;
-import net.minecraft.item.ItemStack;
-
 import java.io.File;
 
 public class Mode {
