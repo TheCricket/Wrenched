@@ -3,10 +3,13 @@ package com.cricketcraft.wrenched.items;
 import com.cricketcraft.wrenched.Wrenched;
 import com.cricketcraft.wrenched.tile.TileEntityPlatform;
 import com.cricketcraft.wrenched.util.TeamColor;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -14,6 +17,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import static com.cricketcraft.wrenched.util.TeamColor.*;
@@ -44,7 +48,11 @@ public class ItemMicrophone extends Item {
                 platform.fillChest(world, platform.xCoord, platform.yCoord, platform.zCoord);
             }
         } else {
-            MinecraftServer.getServer().addChatMessage(new ChatComponentText("Voting has ended!"));
+            if (world.isRemote) {
+                return super.onItemUse(stack, player, world, x, y, z, meta, hitX, hitY, hitZ);
+            }
+            ServerConfigurationManager sv = MinecraftServer.getServer().getConfigurationManager();
+            sv.sendChatMsg(new ChatComponentText("Voting has ended!"));
             int red = 0;
             int green = 0;
             int blue = 0;
@@ -88,8 +96,10 @@ public class ItemMicrophone extends Item {
                 }
             }
 
-            for(TeamColor color : Wrenched.currentTeams) {
-                if(color.hasBeenEliminated()) {
+            Iterator<TeamColor> iterator = Wrenched.currentTeams.iterator();
+            while (iterator.hasNext()) {
+                TeamColor color = iterator.next();
+                if (color.hasBeenEliminated()) {
                     Wrenched.currentTeams.remove(color);
                 }
             }
