@@ -14,7 +14,6 @@ out
 
 #gradle
 build
-.gradle
 
 #runtime
 eclipse
@@ -43,3 +42,17 @@ libs
 /server.properties
 *.dat
 *.psd
+src/main/resources/assets/wrenched/textures/blocks/locker.png
+src/main/resources/assets/wrenched/textures/items/easy_machines.png
+src/main/resources/assets/wrenched/textures/items/easy_misc.png
+src/main/resources/assets/wrenched/textures/items/easy_redstone.png
+src/main/resources/assets/wrenched/textures/items/easy_transport.png
+src/main/resources/assets/wrenched/textures/items/hard_machines.png
+src/main/resources/assets/wrenched/textures/items/hard_misc.png
+src/main/resources/assets/wrenched/textures/items/hard_redstone.png
+src/main/resources/assets/wrenched/textures/items/hard_transport.png
+src/main/resources/assets/wrenched/textures/items/medium_machines.png
+src/main/resources/assets/wrenched/textures/items/medium_misc.png
+src/main/resources/assets/wrenched/textures/items/medium_redstone.png
+src/main/resources/assets/wrenched/textures/items/medium_transport.png
+src/main/resources/assets/wrenched/textures/items/platformConnector.png
