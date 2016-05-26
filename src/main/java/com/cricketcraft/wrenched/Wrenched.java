@@ -14,23 +14,19 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO: Lock the chests until the round starts; Speed boosts for players
@@ -41,7 +37,8 @@ public class Wrenched {
     public static final String NAME = "Wrenched";
     public static final String VERSION = "1.0";
 
-    public static ArrayList<TeamColor> currentTeams = new ArrayList<TeamColor>();
+    public static List<TeamColor> currentTeams = new ArrayList<TeamColor>();
+    public static List<TeamColor> wrenchedColors = new ArrayList<>();
 
     public static File wrenchedDir, easyDir, mediumDir, hardDir;
     public static File easyMachine, easyRedstone, easyTransport, easyMisc;
