@@ -33,6 +33,9 @@ public class Util {
     }
 
     public static ItemStack[] getStacksFromStrings(String... args) {
+        if (args == null) {
+            return new ItemStack[]{new ItemStack(Blocks.wool, 1, 6)};
+        }
         ItemStack[] ret = new ItemStack[args.length];
         for (int c = 0; c < args.length; c++) {
             ret[c] = getStackFromString(args[c]);
