@@ -12,6 +12,10 @@ import net.minecraft.util.ChatComponentText;
 public class MessageButtonClicked implements IMessage, IMessageHandler<MessageButtonClicked, IMessage> {
     public int teamID;
 
+    public MessageButtonClicked() {
+
+    }
+
     public MessageButtonClicked(int id) {
         teamID = id;
     }
