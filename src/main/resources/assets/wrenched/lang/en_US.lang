@@ -16,5 +16,6 @@ item.chestSetter.11.name=Hard Misc Setter
 
 tile.platformBlock.name=Platform Block
 tile.table.name=Judges Table
+tile.locker.name=Block Locker 3000
 
 itemGroup.tabWrenched=Wrenched

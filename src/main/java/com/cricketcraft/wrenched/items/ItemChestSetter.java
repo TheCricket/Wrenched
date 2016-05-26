@@ -5,11 +5,15 @@ import com.cricketcraft.wrenched.util.GameMode;
 import com.cricketcraft.wrenched.util.JSONUtils;
 import com.cricketcraft.wrenched.util.Util;
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.io.File;
@@ -60,6 +64,31 @@ public class ItemChestSetter extends Item {
         }
     }
 
+    public String[] textureNames  = new String[]{
+            "easy_machines",
+            "easy_transport",
+            "easy_redstone",
+            "easy_misc",
+            "medium_machines",
+            "medium_transport",
+            "medium_redstone",
+            "medium_misc",
+            "hard_machines",
+            "hard_transport",
+            "hard_redstone",
+            "hard_misc",
+    };
+
+    @SideOnly(Side.CLIENT)
+    private IIcon[] icons = new IIcon[textureNames.length];
+
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister) {
+        for(int c = 0; c < textureNames.length; c++) {
+            icons[c] = iconRegister.registerIcon(Wrenched.MODID + ":" + textureNames[c]);
+        }
+    }
+
     public ItemChestSetter() {
         super();
         setUnlocalizedName("chestSetter");
@@ -67,6 +96,11 @@ public class ItemChestSetter extends Item {
         setMaxStackSize(1);
         setTextureName(Wrenched.MODID + ":chestSetter");
         setCreativeTab(Wrenched.tabWrenched);
+    }
+
+    @Override
+    public IIcon getIconFromDamage(int damage) {
+        return icons[damage];
     }
 
     @Override

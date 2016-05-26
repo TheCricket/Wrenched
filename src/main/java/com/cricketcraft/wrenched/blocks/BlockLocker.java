@@ -16,6 +16,7 @@ public class BlockLocker extends Block {
     public BlockLocker() {
         super(Material.rock);
         setBlockName("locker");
+        setBlockTextureName(Wrenched.MODID + ":locker");
         setCreativeTab(Wrenched.tabWrenched);
         setBlockUnbreakable();
     }
