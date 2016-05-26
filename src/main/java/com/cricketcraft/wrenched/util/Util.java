@@ -3,6 +3,7 @@ package com.cricketcraft.wrenched.util;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -56,6 +57,7 @@ public class Util {
 
     public static ItemStack[] getChestLootForRound(GameMode mode) {
         ItemStack[] stacks = new ItemStack[4];
+        ItemStack defa = new ItemStack(Blocks.wool, 1, 6);
         ItemStack[] machineStacks, redstoneStacks, transportStacks, miscStacks;
         Random random = new Random();
 
@@ -64,10 +66,22 @@ public class Util {
         transportStacks = getStacksFromStrings(mode.getMode().getTransportItems());
         miscStacks = getStacksFromStrings(mode.getMode().getMiscItems());
 
-        stacks[0] = machineStacks[random.nextInt(machineStacks.length)];
-        stacks[1] = redstoneStacks[random.nextInt(redstoneStacks.length)];
-        stacks[2] = transportStacks[random.nextInt(transportStacks.length)];
-        stacks[3] = miscStacks[random.nextInt(miscStacks.length)];
+        if(machineStacks != null)
+            stacks[0] = machineStacks[random.nextInt(machineStacks.length)];
+        else
+            stacks[0] = defa;
+        if(redstoneStacks != null)
+            stacks[1] = redstoneStacks[random.nextInt(redstoneStacks.length)];
+        else
+            stacks[1] = defa;
+        if(transportStacks != null)
+            stacks[2] = transportStacks[random.nextInt(transportStacks.length)];
+        else
+            stacks[2] = defa;
+        if(miscStacks != null)
+            stacks[3] = miscStacks[random.nextInt(miscStacks.length)];
+        else
+            stacks[3] = defa;
 
         return stacks;
     }
