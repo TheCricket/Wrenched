@@ -1,5 +1,6 @@
 package com.cricketcraft.wrenched;
 
+import com.cricketcraft.wrenched.blocks.BlockLocker;
 import com.cricketcraft.wrenched.event.WrenchedEventListener;
 import com.cricketcraft.wrenched.init.ModBlocks;
 import com.cricketcraft.wrenched.init.ModItems;
@@ -13,9 +14,19 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.RangedAttribute;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,6 +89,7 @@ public class Wrenched {
         currentMode = GameMode.EASY;
 
         MinecraftForge.EVENT_BUS.register(new WrenchedEventListener());
+        MinecraftForge.EVENT_BUS.register(this);
         NetHandler.init();
     }
 
@@ -100,6 +112,24 @@ public class Wrenched {
             JSONUtils.JsonToJava.convert(hardDir, hardMisc, 3);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+        if(event.entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.entity;
+            player.speedOnGround *= 2.0F;
+            player.speedInAir *= 2.0F;
+            player.addPotionEffect(new PotionEffect(1, Integer.MAX_VALUE, 4));
+            player.setAIMoveSpeed(player.landMovementFactor * 500.0F);
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityTryToOpenContainer(PlayerInteractEvent event) {
+        if(BlockLocker.areLocked && !event.entityPlayer.capabilities.isCreativeMode) {
+            event.setCanceled(true);
         }
     }
 

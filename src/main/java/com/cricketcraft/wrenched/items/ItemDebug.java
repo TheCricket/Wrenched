@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 public class ItemDebug extends Item {
@@ -32,5 +33,13 @@ public class ItemDebug extends Item {
             }
         }
         return super.onItemUseFirst(stack, player, world, x, y, z, side, hitX, hitY, hitZ);
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_) {
+        System.out.println(p_77659_3_.speedOnGround + ":SOG");
+        System.out.println(p_77659_3_.speedInAir + ":SIA");
+        System.out.println(p_77659_3_.getAIMoveSpeed() + ":AIM");
+        return super.onItemRightClick(p_77659_1_, p_77659_2_, p_77659_3_);
     }
 }

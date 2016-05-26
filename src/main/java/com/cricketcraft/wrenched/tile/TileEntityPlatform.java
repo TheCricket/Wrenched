@@ -78,15 +78,17 @@ public class TileEntityPlatform extends TileEntity {
      */
     public void spawnChest(World world, int x, int y, int z) {
         if (world.getBlock(x, y + 1, z) == getQuartzBlock()
-                && world.getBlockMetadata(x, y + 2, z) == TeamColor.GRAY.meta)
-            world.setBlock(x + 7, y + 1, z + 7, Blocks.chest);
+                && world.getBlockMetadata(x, y + 1, z) != TeamColor.GRAY.meta) {
+            world.setBlockToAir(x + 7, y + 2, z + 7);
+            world.setBlock(x + 7, y + 2, z + 7, Blocks.chest);
+        }
     }
 
     public void fillChest(World world, int x, int y, int z) {
         //Don't have to check because I just put it there
         if (!(world.getBlock(x, y + 1, z) == getQuartzBlock()
                 && world.getBlockMetadata(x, y + 1, z) == TeamColor.GRAY.meta)) {
-            TileEntityChest chest = (TileEntityChest) world.getTileEntity(x + 7, y + 1, z + 7);
+            TileEntityChest chest = (TileEntityChest) world.getTileEntity(x + 7, y + 2, z + 7);
 
             ItemStack[] roundLoot = Util.getChestLootForRound(Wrenched.getCurrentGamemode());
 
