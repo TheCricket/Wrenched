@@ -16,6 +16,9 @@ import java.util.Random;
 public class Util {
 
     public static ItemStack getStackFromString(String string) {
+        if(string == null) {
+            return new ItemStack(Blocks.wool, 1, 6);
+        }
         String[] args = string.split(":");
         Item item = GameRegistry.findItem(args[0], args[1]);
         int size = 1;
