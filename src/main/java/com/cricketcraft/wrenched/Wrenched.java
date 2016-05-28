@@ -14,7 +14,10 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,6 +25,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO: Lock the chests until the round starts; Speed boosts for players
+ * TODO: Fix the platforms clearing themselves
  */
 @Mod(modid = Wrenched.MODID, name = Wrenched.NAME, version = Wrenched.VERSION, dependencies = "required-after:FTBL")
 public class Wrenched {
@@ -85,7 +89,8 @@ public class Wrenched {
 
         currentMode = GameMode.EASY;
 
-        MinecraftForge.EVENT_BUS.register(new WrenchedEventListener());
+        if(event.getSide() == Side.CLIENT)
+            MinecraftForge.EVENT_BUS.register(new WrenchedEventListener());
         MinecraftForge.EVENT_BUS.register(this);
         NetHandler.init();
     }
@@ -110,6 +115,11 @@ public class Wrenched {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandSwitchMode());
     }
 
     @SubscribeEvent

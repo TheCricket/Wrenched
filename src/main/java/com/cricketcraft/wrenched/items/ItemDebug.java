@@ -1,18 +1,13 @@
 package com.cricketcraft.wrenched.items;
 
 import com.cricketcraft.wrenched.Wrenched;
-import com.cricketcraft.wrenched.util.GameMode;
-import com.cricketcraft.wrenched.util.TeamColor;
-import com.cricketcraft.wrenched.util.Util;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 public class ItemDebug extends Item {

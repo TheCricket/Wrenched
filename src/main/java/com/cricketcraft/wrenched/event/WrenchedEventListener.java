@@ -1,8 +1,6 @@
 package com.cricketcraft.wrenched.event;
 
-import com.cricketcraft.wrenched.Wrenched;
 import com.cricketcraft.wrenched.init.ModItems;
-import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -11,20 +9,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
 import org.lwjgl.opengl.GL11;
 
+@SideOnly(Side.CLIENT)
 public class WrenchedEventListener {
+
     private static boolean isPlayerWearingHat(EntityPlayer player) {
         ItemStack is = player.inventory.armorInventory[3];
         return is != null && is.getItem() == ModItems.judgesHat;
-    }
-
-    @SubscribeEvent
-    public void onPlayerOpenChest(PlayerOpenContainerEvent event) {
-        if (!event.entityPlayer.capabilities.isCreativeMode && Wrenched.lockedChests) {
-            event.setResult(Event.Result.DENY);
-        }
     }
 
     @SideOnly(Side.CLIENT)

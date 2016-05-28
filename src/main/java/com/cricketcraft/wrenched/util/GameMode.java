@@ -34,4 +34,19 @@ public enum GameMode {
     public void setMode(Mode mode) {
         this.mode = mode;
     }
+
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case EASY:
+                return "EASY";
+            case MEDIUM:
+                return "MEDIUM";
+            case HARD:
+                return "HARD";
+        }
+
+        return "NULL";
+    }
 }

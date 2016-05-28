@@ -21,9 +21,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cricketcraft.wrenched.util.GameMode.EASY;
-import static com.cricketcraft.wrenched.util.GameMode.HARD;
-import static com.cricketcraft.wrenched.util.GameMode.MEDIUM;
+import static com.cricketcraft.wrenched.util.GameMode.*;
 
 public class ItemChestSetter extends Item {
 

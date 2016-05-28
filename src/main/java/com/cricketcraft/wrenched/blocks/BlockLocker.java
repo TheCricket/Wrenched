@@ -7,8 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class BlockLocker extends Block {
 
     public static boolean areLocked;

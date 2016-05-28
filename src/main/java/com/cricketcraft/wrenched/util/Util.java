@@ -1,7 +1,6 @@
 package com.cricketcraft.wrenched.util;
 
 
-import com.google.common.base.Strings;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -53,6 +52,9 @@ public class Util {
             return "";
         if (stack.getUnlocalizedName().contains(":")) {
             modid = stack.getUnlocalizedName().split(":")[0].substring(5);
+            if(modid.equals("extrautils"))
+                modid = "ExtraUtilities";
+            //Please Tema no
             for(int c = 0; c < stack.getUnlocalizedName().split(":").length; c++) {
                 FMLLog.info(stack.getUnlocalizedName().split(":")[c]);
             }

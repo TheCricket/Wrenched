@@ -1,6 +1,7 @@
 package com.cricketcraft.wrenched.tile;
 
 import com.cricketcraft.wrenched.Wrenched;
+import com.cricketcraft.wrenched.init.ModBlocks;
 import com.cricketcraft.wrenched.util.TeamColor;
 import com.cricketcraft.wrenched.util.Util;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -45,7 +46,8 @@ public class TileEntityPlatform extends TileEntity {
                 for (int x = 0; x < 16; x++) {
                     for (int y = 0; y < (256 - (yPos + 1)); y++) {
                         for (int z = 0; z < 16; z++) {
-                            world.setBlockToAir(xPos + x, yPos + y, zPos + z);
+                            if(!(world.getBlock(xPos + x, yPos + y, zPos + z) == ModBlocks.platform))
+                                world.setBlockToAir(xPos + x, yPos + y, zPos + z);
                         }
                     }
                 }
