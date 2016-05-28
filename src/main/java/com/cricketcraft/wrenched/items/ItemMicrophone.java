@@ -20,6 +20,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.common.FMLLog;
+
 import static com.cricketcraft.wrenched.util.TeamColor.*;
 
 public class ItemMicrophone extends Item {
@@ -58,7 +60,7 @@ public class ItemMicrophone extends Item {
             int blue = 0;
             int purple = 0;
 
-            for(int c = 0; c < Wrenched.wrenchedColors.size(); c++) {
+            for (int c = 0; c < Wrenched.wrenchedColors.size(); c++) {
                 switch (Wrenched.wrenchedColors.get(c)) {
                     case RED:
                         red++;
@@ -78,20 +80,20 @@ public class ItemMicrophone extends Item {
             Integer[] array = {red, green, blue, purple};
             Arrays.sort(array, Collections.reverseOrder());
             TeamColor eliminated = GRAY;
-            if(array[0] == red) {
+            if (array[0] == red) {
                 eliminated = RED;
-            } else if(array[0] == blue) {
+            } else if (array[0] == blue) {
                 eliminated = BLUE;
-            } else if(array[0] == green) {
+            } else if (array[0] == green) {
                 eliminated = GREEN;
-            } else if(array[0] == purple) {
+            } else if (array[0] == purple) {
                 eliminated = PURPLE;
             }
 
-            for(int c = 0; c < world.loadedTileEntityList.size(); c++) {
-                if(world.loadedTileEntityList.get(c) instanceof TileEntityPlatform) {
+            for (int c = 0; c < world.loadedTileEntityList.size(); c++) {
+                if (world.loadedTileEntityList.get(c) instanceof TileEntityPlatform) {
                     TileEntityPlatform platform = (TileEntityPlatform) world.loadedTileEntityList.get(c);
-                    if(platform.getTeamColor() == eliminated)
+                    if (platform.getTeamColor() == eliminated)
                         platform.getTeamColor().setEliminated(true);
                 }
             }
@@ -100,7 +102,8 @@ public class ItemMicrophone extends Item {
             while (iterator.hasNext()) {
                 TeamColor color = iterator.next();
                 if (color.hasBeenEliminated()) {
-                    Wrenched.currentTeams.remove(color);
+                    FMLLog.info("Removing a team.");
+                    iterator.remove();
                 }
             }
         }
