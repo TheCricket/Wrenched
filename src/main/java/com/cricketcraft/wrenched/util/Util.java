@@ -1,6 +1,8 @@
 package com.cricketcraft.wrenched.util;
 
 
+import com.google.common.base.Strings;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -45,10 +47,38 @@ public class Util {
     }
 
     public static String getStringFromStack(ItemStack stack) {
+        String modid = "minecraft";
+        String unlocalizedName;
         if(stack == null)
             return "";
-        String unlocalizedName = stack.getUnlocalizedName();
-        return unlocalizedName + ":" + stack.stackSize + ":" + stack.getItemDamage();
+        if (stack.getUnlocalizedName().contains(":")) {
+            modid = stack.getUnlocalizedName().split(":")[0].substring(5);
+            for(int c = 0; c < stack.getUnlocalizedName().split(":").length; c++) {
+                FMLLog.info(stack.getUnlocalizedName().split(":")[c]);
+            }
+            String temp = stack.getUnlocalizedName().split(":")[1];
+            char[] chars = temp.toCharArray();
+            char[] chars1 = new char[chars.length];
+            boolean thatTime = false;
+            int c = 0;
+            while(!thatTime) {
+                if(chars[c] == '.')
+                    thatTime = true;
+                else
+                    chars1[c] = chars[c];
+                c++;
+            }
+            //go away
+            char[] chars2 = new char[c];
+            for(int d = 0; d < c - 1; d++) {
+                chars2[d] = chars1[d];
+            }
+            //pls just leave
+            unlocalizedName = String.valueOf(chars2).replaceAll("\\u0000", "");
+        } else {
+            unlocalizedName = stack.getUnlocalizedName().substring(5);
+        }
+        return modid + ":" + unlocalizedName + ":" + stack.stackSize + ":" + stack.getItemDamage();
     }
 
     public static String[] getStringsFromStacks(ItemStack... stacks) {
