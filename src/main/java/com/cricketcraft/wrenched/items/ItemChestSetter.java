@@ -28,16 +28,16 @@ public class ItemChestSetter extends Item {
 
     enum EnumChestSetter {
         EASY_MACHINE(EASY, Wrenched.easyMachine, 0),
-        EASY_TRANSPORT(EASY, Wrenched.easyTransport, 1),
-        EASY_REDSTONE(EASY, Wrenched.easyRedstone, 2),
+        EASY_REDSTONE(EASY, Wrenched.easyRedstone, 1),
+        EASY_TRANSPORT(EASY, Wrenched.easyTransport, 2),
         EASY_MISC(EASY, Wrenched.easyMisc, 3),
         MEDIUM_MACHINE(MEDIUM, Wrenched.mediumMachine, 0),
-        MEDIUM_TRANSPORT(MEDIUM, Wrenched.mediumTransport, 1),
-        MEDIUM_REDSTONE(MEDIUM, Wrenched.mediumRedstone, 2),
+        MEDIUM_REDSTONE(MEDIUM, Wrenched.mediumRedstone, 1),
+        MEDIUM_TRANSPORT(MEDIUM, Wrenched.mediumTransport, 2),
         MEDIUM_MISC(MEDIUM, Wrenched.mediumMisc, 3),
         HARD_MACHINE(HARD, Wrenched.hardMachine, 0),
-        HARD_TRANSPORT(HARD, Wrenched.hardTransport, 1),
-        HARD_REDSTONE(HARD, Wrenched.hardRedstone, 2),
+        HARD_REDSTONE(HARD, Wrenched.hardRedstone, 1),
+        HARD_TRANSPORT(HARD, Wrenched.hardTransport, 2),
         HARD_MISC(HARD, Wrenched.hardMisc, 3);
 
         private GameMode mode;

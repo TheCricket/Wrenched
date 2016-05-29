@@ -98,6 +98,11 @@ public class TileEntityPlatform extends TileEntity {
         }
     }
 
+    public void setEliminated(boolean eliminated) {
+        getTeamColor().setEliminated(eliminated);
+        setTeamColor(TeamColor.GRAY);
+    }
+
     public TeamColor getTeamColor() {
         return color;
     }

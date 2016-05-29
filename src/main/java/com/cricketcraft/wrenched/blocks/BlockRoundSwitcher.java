@@ -76,7 +76,7 @@ public class BlockRoundSwitcher extends Block {
                     if (world.loadedTileEntityList.get(c) instanceof TileEntityPlatform) {
                         TileEntityPlatform platform = (TileEntityPlatform) world.loadedTileEntityList.get(c);
                         if (platform.getTeamColor() == eliminated)
-                            platform.getTeamColor().setEliminated(true);
+                            platform.setEliminated(true);
                     }
                 }
 
