@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.io.File;
@@ -142,5 +143,10 @@ public class ItemChestSetter extends Item {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
+        list.add(StatCollector.translateToLocal("chestSetter.desc"));
     }
 }

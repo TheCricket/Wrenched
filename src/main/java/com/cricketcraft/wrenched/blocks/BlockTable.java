@@ -4,7 +4,11 @@ import com.cricketcraft.wrenched.Wrenched;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class BlockTable extends Block {
     public BlockTable() {

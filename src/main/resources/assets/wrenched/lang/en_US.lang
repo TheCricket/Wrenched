@@ -26,3 +26,8 @@ tile.platformDestroyer_3.name=Purple Platform Destroyer
 itemGroup.tabWrenched=Wrenched
 
 microphone.shifting.desc=Shift Right Click on a block to start the round!
+debug.desc=If you are not debugging don't use this
+spectatorHat.desc=Judges and spectators will wear this hat. If you and another person are both wearing the hat you will be visible to each other but not to anyone else.
+chestSetter.desc=Shift click on a chest full of items to set the corresponding json
+platformConnector.desc= Right click on a platform block to set it to the corresponding number
+platformDestroyer.desc=Destroys the platform on a redstone signal as well as eliminates the team
