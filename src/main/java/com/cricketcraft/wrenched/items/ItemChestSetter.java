@@ -78,13 +78,11 @@ public class ItemChestSetter extends Item {
             "hard_misc",
     };
 
-    @SideOnly(Side.CLIENT)
-    private IIcon[] icons = new IIcon[textureNames.length];
+    private IIcon[] iicons = new IIcon[textureNames.length];
 
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
         for(int c = 0; c < textureNames.length; c++) {
-            icons[c] = iconRegister.registerIcon(Wrenched.MODID + ":" + textureNames[c]);
+            iicons[c] = iconRegister.registerIcon(Wrenched.MODID + ":" + textureNames[c]);
         }
     }
 
@@ -93,13 +91,12 @@ public class ItemChestSetter extends Item {
         setUnlocalizedName("chestSetter");
         setHasSubtypes(true);
         setMaxStackSize(1);
-        setTextureName(Wrenched.MODID + ":chestSetter");
         setCreativeTab(Wrenched.tabWrenched);
     }
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        return icons[damage];
+        return iicons[damage];
     }
 
     @Override
