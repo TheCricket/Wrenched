@@ -1,7 +1,7 @@
 package com.cricketcraft.wrenched.init;
 
 import com.cricketcraft.wrenched.blocks.*;
-import com.cricketcraft.wrenched.items.ItemBlockPlatformDestroyer;
+import com.cricketcraft.wrenched.items.ItemBlockGameModeSwitcher;
 import com.cricketcraft.wrenched.tile.TileEntityPlatform;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -13,14 +13,14 @@ public class ModBlocks {
     public static BlockTable votingTable;
     public static BlockLocker locker;
     public static BlockRoundSwitcher roundSwitcher;
-    public static BlockPlatformDestroyer platformDestroyer;
+    public static BlockGameModeSwitcher platformDestroyer;
 
     public static void preInit() {
         platform = new BlockPlatform();
         votingTable = new BlockTable();
         locker = new BlockLocker();
         roundSwitcher = new BlockRoundSwitcher();
-        platformDestroyer = new BlockPlatformDestroyer();
+        platformDestroyer = new BlockGameModeSwitcher();
     }
 
     public static void init() {
@@ -28,7 +28,7 @@ public class ModBlocks {
         registerBlock(votingTable);
         registerBlock(locker);
         registerBlock(roundSwitcher);
-        registerBlockWithMetadata(platformDestroyer, ItemBlockPlatformDestroyer.class);
+        registerBlockWithMetadata(platformDestroyer, ItemBlockGameModeSwitcher.class);
 
         GameRegistry.registerTileEntity(TileEntityPlatform.class, "TileEntityPlatform");
     }

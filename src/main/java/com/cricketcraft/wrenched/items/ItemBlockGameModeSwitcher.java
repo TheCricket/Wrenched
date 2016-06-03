@@ -6,12 +6,20 @@ import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBlockPlatformDestroyer extends ItemBlockWithMetadata {
+public class ItemBlockGameModeSwitcher extends ItemBlockWithMetadata {
 
-    public ItemBlockPlatformDestroyer(Block block) {
+    private List<String> lewdNames = new ArrayList<String>();
+
+    public ItemBlockGameModeSwitcher(Block block) {
         super(block, block);
+        lewdNames.add("Rajecent");
+        lewdNames.add("Hermyone");
+        lewdNames.add("Cricket");
+        lewdNames.add("Beanxxbot");
+        lewdNames.add("Blkdragon112");
     }
 
     @Override
@@ -22,5 +30,8 @@ public class ItemBlockPlatformDestroyer extends ItemBlockWithMetadata {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
         list.add(StatCollector.translateToLocal("platformDestroyer.desc"));
+        if(stack.getItemDamage() == 2 && lewdNames.contains(player.getDisplayName())){
+            list.add(StatCollector.translateToLocal("lewd.desc"));
+        }
     }
 }

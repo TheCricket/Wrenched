@@ -28,9 +28,6 @@ public class BlockRoundSwitcher extends Block {
         setBlockTextureName(Wrenched.MODID + ":roundSwitcher");
     }
 
-    /**
-     * TODO: This just needs to determine the winner and then trigger all the blocks to clear the platform
-     */
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         if(world.isBlockIndirectlyGettingPowered(x, y, z)) {

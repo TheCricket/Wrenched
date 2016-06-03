@@ -18,10 +18,9 @@ tile.platformBlock.name=Platform Block
 tile.table.name=Judges Table
 tile.locker.name=Block Locker 3000
 tile.roundSwitcher.name=Round Switcher
-tile.platformDestroyer_0.name=Green Platform Destroyer
-tile.platformDestroyer_1.name=Blue Platform Destroyer
-tile.platformDestroyer_2.name=Red Platform Destroyer
-tile.platformDestroyer_3.name=Purple Platform Destroyer
+tile.platformDestroyer_0.name=Easy Mode
+tile.platformDestroyer_1.name=Medium Mode
+tile.platformDestroyer_2.name=Hard Mode
 
 itemGroup.tabWrenched=Wrenched
 
@@ -30,4 +29,5 @@ debug.desc=If you are not debugging don't use this
 spectatorHat.desc=Judges and spectators will wear this hat. If you and another person are both wearing the hat you will be visible to each other but not to anyone else.
 chestSetter.desc=Shift click on a chest full of items to set the corresponding json
 platformConnector.desc= Right click on a platform block to set it to the corresponding number
-platformDestroyer.desc=Destroys the platform on a redstone signal as well as eliminates the team
+platformDestroyer.desc=Sets the gamemode when given a redstone signal
+lewd.desc=Giggity ;)
