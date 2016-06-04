@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import static com.cricketcraft.wrenched.util.TeamColor.*;
-import static com.cricketcraft.wrenched.util.TeamColor.PURPLE;
+import static com.cricketcraft.wrenched.util.TeamColor.YELLOW;
 
 public class BlockRoundSwitcher extends Block {
 
@@ -37,15 +37,15 @@ public class BlockRoundSwitcher extends Block {
                 int red = 0;
                 int green = 0;
                 int blue = 0;
-                int purple = 0;
+                int yellow = 0;
 
                 for (int c = 0; c < Wrenched.wrenchedColors.size(); c++) {
                     switch (Wrenched.wrenchedColors.get(c)) {
                         case RED:
                             red++;
                             break;
-                        case PURPLE:
-                            purple++;
+                        case YELLOW:
+                            yellow++;
                             break;
                         case GREEN:
                             green++;
@@ -56,7 +56,7 @@ public class BlockRoundSwitcher extends Block {
                     }
                 }
 
-                Integer[] array = {red, green, blue, purple};
+                Integer[] array = {red, green, blue, yellow};
                 Arrays.sort(array, Collections.reverseOrder());
                 TeamColor eliminated = GRAY;
                 if (array[0] == red) {
@@ -65,8 +65,8 @@ public class BlockRoundSwitcher extends Block {
                     eliminated = BLUE;
                 } else if (array[0] == green) {
                     eliminated = GREEN;
-                } else if (array[0] == purple) {
-                    eliminated = PURPLE;
+                } else if (array[0] == yellow) {
+                    eliminated = YELLOW;
                 }
 
                 for (int c = 0; c < world.loadedTileEntityList.size(); c++) {
