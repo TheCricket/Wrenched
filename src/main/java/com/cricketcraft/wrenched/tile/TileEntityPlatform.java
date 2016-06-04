@@ -43,9 +43,9 @@ public class TileEntityPlatform extends TileEntity {
         if(color != null) {
             if (isMainPlatform) {
                 //First we need to clear the platform all the way up to y256
-                for (int x = 0; x < 16; x++) {
+                for (int x = 0; x < 15; x++) {
                     for (int y = 0; y < (256 - (yPos + 1)); y++) {
-                        for (int z = 0; z < 16; z++) {
+                        for (int z = 0; z < 15; z++) {
                             if(!(world.getBlock(xPos + x, yPos + y, zPos + z) == ModBlocks.platform))
                                 world.setBlockToAir(xPos + x, yPos + y, zPos + z);
                         }
@@ -53,8 +53,8 @@ public class TileEntityPlatform extends TileEntity {
                 }
 
                 //Now that everything is gone lets put it back
-                for (int x = 0; x < 16; x++) {
-                    for (int z = 0; z < 16; z++) {
+                for (int x = 0; x < 15; x++) {
+                    for (int z = 0; z < 15; z++) {
                         world.setBlock(xPos + x, yPos + 1, zPos + z, quartz, color.meta, 2);
                     }
                 }
