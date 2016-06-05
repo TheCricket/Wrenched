@@ -22,6 +22,7 @@ public class ModBlocks {
         locker = new BlockLocker();
         roundSwitcher = new BlockRoundSwitcher();
         platformDestroyer = new BlockGameModeSwitcher();
+        chestFiller = new BlockChestFiller();
     }
 
     public static void init() {
