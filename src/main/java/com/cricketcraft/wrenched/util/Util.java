@@ -51,7 +51,7 @@ public class Util {
         if(stack == null)
             return "";
 
-        unlocalizedName = stack.getItem().itemRegistry.getNameForObject(stack.getItem());
+        unlocalizedName = Item.itemRegistry.getNameForObject(stack.getItem());
         //TODO: FIX THIS
 //        if (stack.getItem().itemRegistry.getNameForObject(stack.getItem()).contains(":")) {
 //            modid = stack.getUnlocalizedName().split(":")[0].substring(5);

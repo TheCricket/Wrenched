@@ -44,7 +44,7 @@ public class TileEntityPlatform extends TileEntity {
             if (isMainPlatform) {
                 //First we need to clear the platform all the way up to y256
                 for (int x = 0; x < 15; x++) {
-                    for (int y = 0; y < (256 - (yPos + 1)); y++) {
+                    for (int y = 0; y < (32 - (yPos + 1)); y++) {
                         for (int z = 0; z < 15; z++) {
                             if(!(world.getBlock(xPos + x, yPos + y, zPos + z) == ModBlocks.platform))
                                 world.setBlockToAir(xPos + x, yPos + y, zPos + z);

@@ -28,7 +28,7 @@ public class ItemPlatformConnector extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return super.getItemStackDisplayName(stack) + " (" + (stack.getItemDamage() == 0 ? "2x2 Mode" : "16x16 Mode") + ")";
+        return super.getItemStackDisplayName(stack) + " (" + (stack.getItemDamage() == 0 ? "2x2 Mode" : "15x15 Mode") + ")";
     }
 
     @Override

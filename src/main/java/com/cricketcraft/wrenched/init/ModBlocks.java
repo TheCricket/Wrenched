@@ -14,6 +14,7 @@ public class ModBlocks {
     public static BlockLocker locker;
     public static BlockRoundSwitcher roundSwitcher;
     public static BlockGameModeSwitcher platformDestroyer;
+    public static BlockChestFiller chestFiller;
 
     public static void preInit() {
         platform = new BlockPlatform();
@@ -28,6 +29,7 @@ public class ModBlocks {
         registerBlock(votingTable);
         registerBlock(locker);
         registerBlock(roundSwitcher);
+        registerBlock(chestFiller);
         registerBlockWithMetadata(platformDestroyer, ItemBlockGameModeSwitcher.class);
 
         GameRegistry.registerTileEntity(TileEntityPlatform.class, "TileEntityPlatform");
