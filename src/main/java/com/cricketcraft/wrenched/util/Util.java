@@ -50,36 +50,39 @@ public class Util {
         String unlocalizedName;
         if(stack == null)
             return "";
-        if (stack.getUnlocalizedName().contains(":")) {
-            modid = stack.getUnlocalizedName().split(":")[0].substring(5);
-            if(modid.equals("extrautils"))
-                modid = "ExtraUtilities";
-            //Please Tema no
-            for(int c = 0; c < stack.getUnlocalizedName().split(":").length; c++) {
-                FMLLog.info(stack.getUnlocalizedName().split(":")[c]);
-            }
-            String temp = stack.getUnlocalizedName().split(":")[1];
-            char[] chars = temp.toCharArray();
-            char[] chars1 = new char[chars.length];
-            boolean thatTime = false;
-            int c = 0;
-            while(!thatTime) {
-                if(chars[c] == '.')
-                    thatTime = true;
-                else
-                    chars1[c] = chars[c];
-                c++;
-            }
-            //go away
-            char[] chars2 = new char[c];
-            for(int d = 0; d < c - 1; d++) {
-                chars2[d] = chars1[d];
-            }
-            //pls just leave
-            unlocalizedName = String.valueOf(chars2).replaceAll("\\u0000", "");
-        } else {
-            unlocalizedName = stack.getUnlocalizedName().substring(5);
-        }
+
+        unlocalizedName = stack.getItem().itemRegistry.getNameForObject(stack.getItem());
+        //TODO: FIX THIS
+//        if (stack.getItem().itemRegistry.getNameForObject(stack.getItem()).contains(":")) {
+//            modid = stack.getUnlocalizedName().split(":")[0].substring(5);
+//            if(modid.equals("extrautils"))
+//                modid = "ExtraUtilities";
+//            //Please Tema no
+//            for(int c = 0; c < stack.getUnlocalizedName().split(":").length; c++) {
+//                FMLLog.info(stack.getUnlocalizedName().split(":")[c]);
+//            }
+//            String temp = stack.getUnlocalizedName().split(":")[1];
+//            char[] chars = temp.toCharArray();
+//            char[] chars1 = new char[chars.length];
+//            boolean thatTime = false;
+//            int c = 0;
+//            while(!thatTime) {
+//                if(chars[c] == '.')
+//                    thatTime = true;
+//                else
+//                    chars1[c] = chars[c];
+//                c++;
+//            }
+//            //go away
+//            char[] chars2 = new char[c];
+//            for(int d = 0; d < c - 1; d++) {
+//                chars2[d] = chars1[d];
+//            }
+//            //pls just leave
+//            unlocalizedName = String.valueOf(chars2).replaceAll("\\u0000", "");
+//        } else {
+//            unlocalizedName = stack.getUnlocalizedName().substring(5);
+//        }
         return modid + ":" + unlocalizedName + ":" + stack.stackSize + ":" + stack.getItemDamage();
     }
 
