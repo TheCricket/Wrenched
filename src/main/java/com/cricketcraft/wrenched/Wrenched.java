@@ -15,7 +15,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,7 +24,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,7 +68,7 @@ public class Wrenched {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        currentTeams.add(TeamColor.PURPLE);
+        currentTeams.add(TeamColor.YELLOW);
         currentTeams.add(TeamColor.BLUE);
         currentTeams.add(TeamColor.GREEN);
         currentTeams.add(TeamColor.RED);

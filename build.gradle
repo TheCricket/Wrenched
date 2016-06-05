@@ -28,6 +28,24 @@ minecraft {
     runDir = "run"
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        url = "http://mobiusstrip.eu/maven"
+    }
+    maven {
+        url = "http://chickenbones.net/maven"
+    }
+}
+
+dependencies {
+    compile "mcp.mobius.waila:Waila:${waila_version}_${minecraft_version}:dev"
+
+    compile "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
+    compile "codechicken:CodeChickenLib:${minecraft_version}-${ccl_version}:dev"
+    compile "codechicken:CodeChickenCore:${minecraft_version}-${ccc_version}:dev"
+}   
+
 processResources
 {
     inputs.property "version", project.version

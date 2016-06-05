@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockPlatform extends Block {
-    public static final int PURPLE = 10;
+    public static final int YELLOW = 4;
     public static final int RED = 14;
     public static final int BLUE = 3;
     public static final int GREEN = 13;
@@ -48,8 +48,8 @@ public class BlockPlatform extends Block {
                 int meta1 = world.getBlockMetadata(x, y + 1, z);
 
                 switch (meta1) {
-                    case PURPLE:
-                        ((TileEntityPlatform) tile).setTeamColor(TeamColor.PURPLE);
+                    case YELLOW:
+                        ((TileEntityPlatform) tile).setTeamColor(TeamColor.YELLOW);
                         world.playSoundAtEntity(player, "random.orb", 1.0F, 0.15F);
                         break;
                     case RED:

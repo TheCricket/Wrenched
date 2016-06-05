@@ -31,7 +31,7 @@ public class GUIVotingTable extends GuiLM {
         buttons = new ArrayList<>();
         buttons.add(new ButtonVoteTeam(TeamColor.GREEN, 9, 9));
         buttons.add(new ButtonVoteTeam(TeamColor.BLUE, 45, 9));
-        buttons.add(new ButtonVoteTeam(TeamColor.PURPLE, 81, 9));
+        buttons.add(new ButtonVoteTeam(TeamColor.YELLOW, 81, 9));
         buttons.add(new ButtonVoteTeam(TeamColor.RED, 117, 9));
 
         buttonAccept = new ButtonLM(this, 51, 49, 56, 13) {
