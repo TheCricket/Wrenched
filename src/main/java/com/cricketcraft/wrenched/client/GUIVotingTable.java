@@ -10,7 +10,9 @@ import ftb.lib.api.client.FTBLibClient;
 import ftb.lib.api.client.GlStateManager;
 import ftb.lib.api.gui.FTBLibLang;
 import ftb.lib.api.gui.GuiLM;
+import ftb.lib.api.gui.IGuiLM;
 import ftb.lib.api.gui.widgets.ButtonLM;
+import ftb.lib.api.gui.widgets.TextBoxLM;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class GUIVotingTable extends GuiLM {
     public List<ButtonVoteTeam> buttons;
     public ButtonLM buttonAccept;
     public ButtonVoteTeam selectedTeam;
+
     public GUIVotingTable() {
         super(null, TEXTURE);
 
@@ -65,6 +68,9 @@ public class GUIVotingTable extends GuiLM {
         }
 
         drawCenteredString(getFontRenderer(), FTBLibLang.button_accept(), buttonAccept.getAX() + buttonAccept.width / 2, buttonAccept.getAY() + 2, selectedTeam == null ? 0xFF888888 : 0xFFFFFFFF);
+        for(int c = 0; c < buttons.size(); c++) {
+            drawCenteredString(getFontRenderer(), buttons.get(c).color.name(), buttons.get(c).getAX() + buttons.get(c).width / 2, buttons.get(c).getAY() + 2, 0xFFFFFFFF);
+        }
     }
 
     public class ButtonVoteTeam extends ButtonLM {

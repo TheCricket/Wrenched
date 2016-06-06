@@ -7,8 +7,6 @@ import com.cricketcraft.wrenched.util.Util;
 import cpw.mods.ironchest.TileEntityIronChest;
 
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

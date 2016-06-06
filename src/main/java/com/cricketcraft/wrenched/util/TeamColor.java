@@ -3,7 +3,7 @@ package com.cricketcraft.wrenched.util;
 public enum TeamColor {
     RED(14, 0xFFFF4C4C),
     GREEN(13, 0xFF4CFF4C),
-    YELLOW(4, 0xFFFF00),
+    YELLOW(4, 0xFFE6E60),
     BLUE(3, 0xFF4CA5FF),
     GRAY(7, 0xFF808080);
 
